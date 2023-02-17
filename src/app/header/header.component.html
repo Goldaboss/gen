@@ -1,0 +1,32 @@
+<section class="nav flex flex-col">
+  <nav class="flex justify-between px-8 pt-3 items-end">
+    <h1 class="text-2xl font-bold text-white px-5">
+      <a [routerLink]="['/main']"> Main</a>
+    </h1>
+
+    <ul class="flex justify-between">
+      <li><a href="#" class="text-xl font-medium text-white px-5">Products</a></li>
+      <li><a href="#" class="text-xl font-medium text-white px-5">User</a></li>
+    </ul>
+
+    <ul class="flex justify-between">
+      <li><a [routerLink]="['/auth']" class="text-lg font-medium text-white px-5">Sign in</a></li>
+      <li><a href="#" class="text-lg font-medium text-white px-5">Sign up</a></li>
+      <li><a href="#" class="text-lg font-medium text-white px-5">Sign out</a></li>
+    </ul>
+
+  </nav>
+  <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 25 160 40">
+    <defs>
+      <path id="wave"
+            d="M-150 53c30.77 0 59.538-20 90-20 31.077 0 60.256 20 90 20 30.77 0 59.23-20 90-20 30.77 0 59.23 20 90 20v20h-360z"/>
+    </defs>
+    <g>
+      <use xlink:href="#wave" x="50" y="0" fill="#7986cb"/>
+      <use xlink:href="#wave" x="50" y="2" fill="#5c6bc0"/>
+      <use xlink:href="#wave" x="50" y="4" fill="#ffffff"/>
+    </g>
+  </svg>
+
+</section>
+
