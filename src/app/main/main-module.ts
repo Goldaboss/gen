@@ -18,6 +18,5 @@ import {AboutOverviewComponent} from "./components/about-overview/about-overview
     CommonModule
   ],
   providers: [],
-  exports: []
 })
 export class MainModule {}
