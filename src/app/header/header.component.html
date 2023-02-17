@@ -5,8 +5,9 @@
     </h1>
 
     <ul class="flex justify-between">
-      <li><a href="#" class="text-xl font-medium text-white px-5">Products</a></li>
-      <li><a href="#" class="text-xl font-medium text-white px-5">User</a></li>
+      <li><a [routerLink]="['/main', 'about']" class="text-xl font-medium text-white px-5">About Me</a></li>
+      <li><a [routerLink]="['/main', 'products']" class="text-xl font-medium text-white px-5">Products</a></li>
+      <li><a [routerLink]="['/main', 'user']" class="text-xl font-medium text-white px-5">User</a></li>
     </ul>
 
     <ul class="flex justify-between">
