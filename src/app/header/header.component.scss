@@ -1,10 +1,10 @@
-.nav {
-  background: #3f51b5
+.header_bg {
+  background: linear-gradient(180deg, rgba(9,16,64,1) 10%, rgba(255,255,255,1) 100%);
 }
 
 svg {
-  background: #3f51b5;
   height: 3vw;
+  min-height: 56px;
 }
 svg > g > use {
   animation: move 30s linear infinite;
@@ -12,19 +12,19 @@ svg > g > use {
 
 svg > g > use:nth-child(1) {
   animation-delay: -2s;
-  fill: #7986cb;
+  fill: #112bd4;
 }
 
-.banner svg > g > use:nth-child(2) {
+svg > g > use:nth-child(2) {
   animation-delay: -2s;
   animation-duration: 17s;
-  fill: #5c6bc0;
+  fill: #0820bd;
 }
 
-.banner svg > g > use:nth-child(3) {
+svg > g > use:nth-child(3) {
   animation-delay: -4s;
   animation-duration: 10s;
-  fill: #ffffff;
+  fill: #3149e0;
 }
 
 @keyframes move {
