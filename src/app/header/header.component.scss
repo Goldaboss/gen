@@ -38,6 +38,7 @@ svg > g > use:nth-child(3) {
 }
 
 li.active a {
-  text-decoration: underline;
+  font-weight: 900;
   cursor: default;
+  border-bottom: 1px dashed white;
 }
