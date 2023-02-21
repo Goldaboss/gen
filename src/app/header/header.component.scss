@@ -36,3 +36,8 @@ svg > g > use:nth-child(3) {
     transform: translate(90px, 0%);
   }
 }
+
+li.active a {
+  text-decoration: underline;
+  cursor: default;
+}
