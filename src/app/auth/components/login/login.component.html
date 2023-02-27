@@ -1,0 +1,24 @@
+<div class="container max-w-xl mx-auto">
+  <form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-col">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your login</mat-label>
+      <input matInput type="text" formControlName="userName">
+      <mat-error *ngIf="form.controls['userName'].errors?.['required']">Name is required (kminchelle)</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your login</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="userPassword">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon *ngIf="!form.controls['userPassword'].errors?.['required']">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="form.controls['userPassword'].errors?.['required']">Password is required (0lelplR)</mat-error>
+    </mat-form-field>
+
+    <div class="ml-auto">
+      <button mat-raised-button color="primary" class="px-5" [disabled]="form.invalid">Login</button>
+    </div>
+  </form>
+</div>
+
