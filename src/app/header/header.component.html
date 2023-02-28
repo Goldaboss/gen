@@ -17,19 +17,27 @@
     </h1>
 
     <ul class="flex justify-between">
-      <li routerLinkActive="active"><a [routerLink]="['/main', 'about']" class="text-xl font-medium text-white px-5 py-2">About</a></li>
-      <li routerLinkActive="active"><a [routerLink]="['/main', 'products']" class="text-xl font-medium text-white px-5 py-2">Products</a></li>
-      <li routerLinkActive="active"><a [routerLink]="['/main', 'user']" class="text-xl font-medium text-white px-5 py-2">User</a></li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/main', 'about']" class="text-xl font-medium text-white px-5 py-2">About</a>
+      </li>
+      <li routerLinkActive="active" *ngIf="authService.isAuthenticated()">
+        <a [routerLink]="['/main', 'products']" class="text-xl font-medium text-white px-5 py-2">Products</a>
+      </li>
+      <li routerLinkActive="active" *ngIf="authService.isAuthenticated()">
+        <a [routerLink]="['/main', 'user']" class="text-xl font-medium text-white px-5 py-2">User</a>
+      </li>
     </ul>
 
     <ul class="flex justify-between">
-      <li><a [routerLink]="['/auth', 'login']" class="text-lg font-medium text-white mx-2 px-5 py-2 border-2 rounded-md">Login</a></li>
-      <li>
-        <div>
-          <a [routerLink]="['/auth', 'signup']" class="text-lg font-medium text-white mx-2 px-5 py-2 border-2 rounded-md">Sign up</a>
-        </div>
+      <li routerLinkActive="active" *ngIf="!authService.isAuthenticated()">
+        <a [routerLink]="['/auth', 'login']" class="text-lg font-medium text-white mx-2 px-5 py-2 ">Login</a>
       </li>
-      <li><a href="#" class="text-lg font-medium text-white mx-2 px-5 py-2 border-2 rounded-md">Sign out</a></li>
+      <li routerLinkActive="active" *ngIf="!authService.isAuthenticated()">
+          <a [routerLink]="['/auth', 'signup']" class="text-lg font-medium text-white mx-2 px-5 py-2">Sign up</a>
+      </li>
+      <li *ngIf="authService.isAuthenticated()">
+        <a [routerLink]="['/']" class="text-lg font-medium text-white mx-2 px-5 py-2" (click)="singOut()">Sign out</a>
+      </li>
     </ul>
   </nav>
 </section>

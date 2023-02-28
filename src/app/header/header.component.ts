@@ -9,9 +9,12 @@ import {AuthService} from "../auth/services/auth.service";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
+  singOut() {
+    localStorage.clear();
+  }
 }
