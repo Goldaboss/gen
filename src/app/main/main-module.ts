@@ -5,6 +5,7 @@ import {UserOverviewComponent} from "./components/user-overview/user-overview.co
 import {CommonModule} from "@angular/common";
 import {ProductsOverviewComponent} from "./components/products-overview/products-overview.component";
 import {AboutOverviewComponent} from "./components/about-overview/about-overview.component";
+import {AuthGuard} from "../auth/services/auth.guard";
 
 @NgModule({
   declarations: [
@@ -17,6 +18,8 @@ import {AboutOverviewComponent} from "./components/about-overview/about-overview
     MainRoutingModule,
     CommonModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
 })
 export class MainModule {}
