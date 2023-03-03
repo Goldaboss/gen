@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {AuthService} from "../auth/services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -9,12 +10,17 @@ import {AuthService} from "../auth/services/auth.service";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  constructor(
+    public authService: AuthService,
+    public router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
-  singOut() {
-    localStorage.clear();
+  logout(event: Event) {
+    event.preventDefault();
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

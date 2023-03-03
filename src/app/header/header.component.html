@@ -1,5 +1,5 @@
 <section class="header_bg flex flex-col relative">
-  <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 25 160 40">
+  <svg xmlns="http://www.w3.org/2000/svg" class="header_svg" preserveAspectRatio="none" viewBox="0 25 160 40">
     <defs>
       <path id="wave"
             d="M-150 53c30.77 0 59.538-20 90-20 31.077 0 60.256 20 90 20 30.77 0 59.23-20 90-20 30.77 0 59.23 20 90 20v20h-360z"/>
@@ -12,8 +12,8 @@
   </svg>
 
   <nav class="flex justify-between px-8 py-3 items-end w-full absolute">
-    <h1 class="text-2xl font-bold text-white px-5">
-      <a [routerLink]="['/main']"> Main</a>
+    <h1 class="text-xl font-medium text-white px-5 border-2 rounded-full">
+      <a [routerLink]="['/main']">Logo</a>
     </h1>
 
     <ul class="flex justify-between">
@@ -23,12 +23,12 @@
       <li routerLinkActive="active" *ngIf="authService.isAuthenticated()">
         <a [routerLink]="['/main', 'products']" class="text-xl font-medium text-white px-5 py-2">Products</a>
       </li>
-      <li routerLinkActive="active" *ngIf="authService.isAuthenticated()">
-        <a [routerLink]="['/main', 'user']" class="text-xl font-medium text-white px-5 py-2">User</a>
-      </li>
     </ul>
 
     <ul class="flex justify-between">
+      <li routerLinkActive="active" *ngIf="authService.isAuthenticated()">
+        <a [routerLink]="['/main', 'user']" class="text-xl font-medium text-white px-5 py-2">User</a>
+      </li>
       <li routerLinkActive="active" *ngIf="!authService.isAuthenticated()">
         <a [routerLink]="['/auth', 'login']" class="text-lg font-medium text-white mx-2 px-5 py-2 ">Login</a>
       </li>
@@ -36,9 +36,8 @@
           <a [routerLink]="['/auth', 'signup']" class="text-lg font-medium text-white mx-2 px-5 py-2">Sign up</a>
       </li>
       <li *ngIf="authService.isAuthenticated()">
-        <a [routerLink]="['/']" class="text-lg font-medium text-white mx-2 px-5 py-2" (click)="singOut()">Sign out</a>
+        <a  href="#" class="text-lg font-medium text-white mx-2 px-5 py-2" (click)="logout($event)">Logout</a>
       </li>
     </ul>
   </nav>
 </section>
-
