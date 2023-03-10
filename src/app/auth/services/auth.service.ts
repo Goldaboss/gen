@@ -6,7 +6,7 @@ import {User} from "../models/user.model";
 @Injectable({providedIn: 'root'})
 export class AuthService {
 
-  public error$: Subject<string> = new Subject<string>();
+  public error: string = '';
 
   constructor(private http: HttpClient) {
   }
@@ -22,7 +22,7 @@ export class AuthService {
     return this.http.post(`https://dummyjson.com/auth/login`, body, {'headers': headers})
       .pipe(
         tap(this.setToken),
-        catchError(this.handleError)
+        catchError(this.handleError.bind(this))
       )
   }
 
@@ -38,7 +38,7 @@ export class AuthService {
     const {message} = error.error
     switch (message) {
       case "Invalid credentials" :
-        this.error$.next('Неправильное имя пользователя или пароль')
+        this.error = 'Неправильное имя пользователя или пароль'
         break
     }
     return throwError(error);

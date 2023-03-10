@@ -1,8 +1,11 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+
 import {User} from "../../models/user.model";
 import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
+import {DialogComponent} from "../dialog/dialog.component";
 
 
 @Component({
@@ -13,12 +16,13 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   public form: FormGroup = new FormGroup({});
-  public hide = true;
+  public hidePassword = true;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private auth: AuthService,
+    public auth: AuthService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -41,11 +45,11 @@ export class LoginComponent implements OnInit {
     }
 
     this.auth.login(user).subscribe({
-      next: (user) => {
-        localStorage.setItem('userId', user.id);
+      next: () => {
         this.router.navigate(['/']);
       },
       error: () => {
+        this.dialog.open(DialogComponent, {data: this.auth.error})
         this.form.enable()
       }
     })

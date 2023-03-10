@@ -1,6 +1,13 @@
 <div class="container max-w-xl mx-auto">
   <form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-col" autocomplete="off">
 
+<!--    <div class="text-white bg-red-600" *ngIf="auth.error$ | async as error">-->
+<!--      {{error}}-->
+<!--    </div>-->
+
+<!--    <h1 mat-dialog-title >>Error</h1>-->
+<!--    <div mat-dialog-content *ngIf="auth.error$ | async as error">{{error}}</div>-->
+
     <mat-form-field appearance="outline">
       <mat-label>Enter your login</mat-label>
       <input matInput type="text" formControlName="name">
@@ -9,8 +16,8 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Enter your login</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-      <mat-icon (click)="hide=!hide" matSuffix>{{ hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+      <mat-icon (click)="hidePassword=!hidePassword" matSuffix>{{ hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
       <mat-error *ngIf="form.controls['password'].errors?.['required']">Password is required (0lelplR)</mat-error>
     </mat-form-field>
 
@@ -18,5 +25,6 @@
       <button mat-raised-button color="primary" class="px-5" type="submit" [disabled]="!form.valid">Login</button>
     </div>
   </form>
+
 </div>
 
