@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {catchError, Observable, Subject, tap, throwError} from "rxjs";
+import {catchError, Observable, tap, throwError} from "rxjs";
 import {User} from "../models/user.model";
 
 @Injectable({providedIn: 'root'})
@@ -12,6 +12,11 @@ export class AuthService {
   }
 
   get token(): string | null {
+    const expDate = new Date(localStorage.getItem('token-exp')!)
+    if (new Date() > expDate) {
+      this.logout();
+      return null
+    }
     return localStorage.getItem('token');
   }
 
@@ -46,7 +51,9 @@ export class AuthService {
 
   private setToken(response: any | null) {
     if (response) {
+      const expDate = new Date(new Date().getTime() + 60 * 1000)
       localStorage.setItem('token', response.token);
+      localStorage.setItem('token-exp', expDate.toString());
     } else {
       localStorage.clear();
     }
