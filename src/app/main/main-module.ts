@@ -6,6 +6,8 @@ import {MainOverviewComponent} from "./components/main-overview/main-overview.co
 import {UserOverviewComponent} from "./components/user-overview/user-overview.component";
 import {ProductsOverviewComponent} from "./components/products-overview/products-overview.component";
 import {AboutOverviewComponent} from "./components/about-overview/about-overview.component";
+import {ProductsService} from "./services/products.service";
+import {ProductsComponent} from "./components/products-overview/components/products/products.component";
 
 @NgModule({
   declarations: [
@@ -13,11 +15,14 @@ import {AboutOverviewComponent} from "./components/about-overview/about-overview
     AboutOverviewComponent,
     UserOverviewComponent,
     ProductsOverviewComponent,
+    ProductsComponent
   ],
   imports: [
     MainRoutingModule,
     CommonModule
   ],
-  providers: [],
+  providers: [
+    ProductsService
+  ],
 })
 export class MainModule {}

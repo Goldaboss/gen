@@ -9,7 +9,7 @@ import {HeaderComponent} from './header/header.component';
 import {SharedModule} from "./shared/shared.module";
 import {AuthInterceptor} from "./shared/auth.interceptor";
 
-const INTERCEPTOR_PROVIDER : Provider = {
+const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   multi: true,
   useClass: AuthInterceptor

@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ProductsService} from "../../services/products.service";
 
 @Component({
   selector: 'app-products-overview',
@@ -8,9 +9,12 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 })
 export class ProductsOverviewComponent implements OnInit {
 
-  constructor() { }
+  public list$ = this.productsService.productData$;
 
-  ngOnInit(): void {
+  constructor(private productsService: ProductsService) {
   }
 
+  ngOnInit(): void {
+    this.productsService.getList();
+  };
 }
