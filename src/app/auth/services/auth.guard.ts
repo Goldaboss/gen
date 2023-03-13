@@ -7,8 +7,9 @@ export class AuthGuard implements CanActivate {
   constructor(
     private auth: AuthService,
     private router: Router
-    ) {
+  ) {
   }
+
   canActivate(
     route: ActivatedRouteSnapshot, state: RouterStateSnapshot
   ) {
@@ -16,12 +17,11 @@ export class AuthGuard implements CanActivate {
       return true;
     } else {
       this.auth.logout();
-     return this.router.createUrlTree(['/'], {
-       queryParams: {
-         loginAgain: true,
-       }
-     });
+      return this.router.createUrlTree(['/auth', 'login'], {
+        queryParams: {
+          loginAgain: true,
+        }
+      });
     }
   }
-
 }

@@ -2,13 +2,15 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, Observable, tap, throwError} from "rxjs";
 import {User} from "../models/user.model";
+import {Router} from "@angular/router";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
 
-  public error: string = '';
-
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {
   }
 
   get token(): string | null {
@@ -43,7 +45,11 @@ export class AuthService {
     const {message} = error.error
     switch (message) {
       case "Invalid credentials" :
-        this.error = 'Неправильное имя пользователя или пароль'
+        this.router.navigate(['/auth', 'login'], {
+          queryParams: {
+            userError: true
+          }
+        })
         break
     }
     return throwError(error);

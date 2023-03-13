@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {ChangeDetectionStrategy, Component, Inject, OnDestroy} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dialog',
@@ -7,11 +8,15 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
   styleUrls: ['./dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DialogComponent implements OnInit {
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: string) {
+export class DialogComponent implements OnDestroy {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: string,
+    public dialogRef: MatDialogRef<DialogComponent>,
+    private router: Router
+  ) {
   }
 
-  ngOnInit(): void {
+  ngOnDestroy(): void {
+    this.dialogRef.close(this.router.navigate(['/auth', 'login']));
   }
 }

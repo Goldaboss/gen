@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 
 import {User} from "../../models/user.model";
@@ -21,11 +21,24 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    public auth: AuthService,
-    public dialog: MatDialog
-  ) { }
+    private auth: AuthService,
+    private dialog: MatDialog,
+    private route: ActivatedRoute
+  ) {
+  }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params['authFailed']) {
+        this.dialog.open(DialogComponent, {data: 'Требуется авторизация'})
+      } else if (params['loginAgain']) {
+        this.dialog.open(DialogComponent, {data: 'Сессия истекла, требуется авторизация'})
+      } else if (params['userError']) {
+        this.dialog.open(DialogComponent, {data: 'Неправильное имя пользователя или пароль'})
+      }
+    })
+
+
     this.form = this.fb.group({
       name: ['kminchelle', [Validators.required]],
       password: ['0lelplR', [Validators.required]]
@@ -49,7 +62,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/']);
       },
       error: () => {
-        this.dialog.open(DialogComponent, {data: this.auth.error})
         this.form.enable()
       }
     })
