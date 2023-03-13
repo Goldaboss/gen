@@ -4,7 +4,7 @@ import {ProductsOverviewComponent} from "./components/products-overview/products
 import {UserOverviewComponent} from "./components/user-overview/user-overview.component";
 import {MainOverviewComponent} from "./components/main-overview/main-overview.component";
 import {AboutOverviewComponent} from "./components/about-overview/about-overview.component";
-import {AuthGuard} from "../auth/services/auth.guard";
+import {AuthGuard} from "../shared/auth.guard";
 
 const routes: Routes = [
   {
