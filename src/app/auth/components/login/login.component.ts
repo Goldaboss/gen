@@ -2,11 +2,11 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
+import {BehaviorSubject,  finalize} from "rxjs";
 
 import {User} from "../../models/user.model";
 import {AuthService} from "../../services/auth.service";
 import {DialogComponent} from "../dialog/dialog.component";
-
 
 @Component({
   selector: 'app-login',
@@ -17,6 +17,7 @@ import {DialogComponent} from "../dialog/dialog.component";
 export class LoginComponent implements OnInit {
   public form: FormGroup = new FormGroup({});
   public hidePassword = true;
+  public loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
 
   constructor(
     private fb: FormBuilder,
@@ -50,6 +51,7 @@ export class LoginComponent implements OnInit {
       return
     }
 
+    this.loading$.next(true)
     this.form.disable();
 
     const user: User = {
@@ -57,7 +59,10 @@ export class LoginComponent implements OnInit {
       password: this.form.value.password
     }
 
-    this.auth.login(user).subscribe({
+    this.auth.login(user)
+      .pipe(
+        finalize(()=> this.loading$.next(false)))
+      .subscribe({
       next: () => {
         this.router.navigate(['/']);
       },
