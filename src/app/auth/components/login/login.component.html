@@ -1,13 +1,6 @@
 <div class="container max-w-xl mx-auto">
   <form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-col" autocomplete="off">
 
-<!--    <div class="text-white bg-red-600" *ngIf="auth.error$ | async as error">-->
-<!--      {{error}}-->
-<!--    </div>-->
-
-<!--    <h1 mat-dialog-title >>Error</h1>-->
-<!--    <div mat-dialog-content *ngIf="auth.error$ | async as error">{{error}}</div>-->
-
     <mat-form-field appearance="outline">
       <mat-label>Enter your login</mat-label>
       <input matInput type="text" formControlName="name">
