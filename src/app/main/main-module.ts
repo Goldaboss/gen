@@ -8,6 +8,8 @@ import {ProductsOverviewComponent} from "./components/products-overview/products
 import {AboutOverviewComponent} from "./components/about-overview/about-overview.component";
 import {ProductsService} from "./services/products.service";
 import {ProductsComponent} from "./components/products-overview/components/products/products.component";
+import {SharedModule} from "../shared/shared.module";
+import {AuthService} from "../auth/services/auth.service";
 
 @NgModule({
   declarations: [
@@ -19,10 +21,12 @@ import {ProductsComponent} from "./components/products-overview/components/produ
   ],
   imports: [
     MainRoutingModule,
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   providers: [
-    ProductsService
+    ProductsService,
+    AuthService
   ],
 })
 export class MainModule {}
