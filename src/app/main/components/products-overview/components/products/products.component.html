@@ -3,7 +3,7 @@
   <div *ngIf="productsData.length; else loading">
     <table>
       <thead>
-      <tr >
+      <tr>
         <th class="bg-primary">Title</th>
         <th class="bg-primary">Brand</th>
         <th class="bg-primary">Price</th>
@@ -12,14 +12,13 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let item of productsData; let ind = index"  class="bg-light">
+      <tr *ngFor="let item of productsData; let ind = index">
         <td>{{item.title}}</td>
         <td>{{item.brand}}</td>
         <td>{{item.price | currency}}</td>
         <td>{{item.discountPercentage}}%</td>
         <td>
           <button
-            class="btn btn-link"
             [routerLink]="['/main', 'product', item.id]"
           >подробнее
           </button>
@@ -30,6 +29,6 @@
   </div>
 
   <ng-template #loading>
-    <p>Идет загрузка...</p>
+    <gen-loading-spinner></gen-loading-spinner>
   </ng-template>
 </div>
