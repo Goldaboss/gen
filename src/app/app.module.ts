@@ -9,6 +9,7 @@ import {HeaderComponent} from './header/header.component';
 import {AuthInterceptor} from "./shared/auth.interceptor";
 import {AuthModule} from "./auth/auth.module";
 import {MainModule} from "./main/main-module";
+import {DataAccessModule} from "./data-access/data-access.module";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -27,6 +28,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     BrowserAnimationsModule,
     AuthModule,
     MainModule,
+    DataAccessModule
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]
