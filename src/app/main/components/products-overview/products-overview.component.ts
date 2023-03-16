@@ -1,5 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ProductsService} from "../../services/products.service";
+import {BehaviorSubject} from "rxjs";
+import {ProductModel} from "../../models/product.model";
 
 @Component({
   selector: 'app-products-overview',
@@ -9,7 +11,7 @@ import {ProductsService} from "../../services/products.service";
 })
 export class ProductsOverviewComponent implements OnInit {
 
-  public list$ = this.productsService.productData$;
+  public list$: BehaviorSubject<ProductModel[]>  = this.productsService.productData$;
 
   constructor(private productsService: ProductsService) {
   }
