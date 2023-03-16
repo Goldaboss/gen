@@ -13,6 +13,9 @@ import {SignupComponent} from './components/signup/signup.component';
 import {LoginComponent} from './components/login/login.component';
 import {DialogComponent} from "./components/dialog/dialog.component";
 import {SharedModule} from "../shared/shared.module";
+import {AuthService} from "./services/auth.service";
+import {DataAccessModule} from "../data-access/data-access.module";
+import {RequestBuilder} from "../data-access/services/request-builder";
 
 @NgModule({
   declarations: [
@@ -30,8 +33,12 @@ import {SharedModule} from "../shared/shared.module";
     MatIconModule,
     ReactiveFormsModule,
     SharedModule,
-    MatDialogModule
+    MatDialogModule,
+    DataAccessModule
   ],
-  providers: []
+  providers: [
+    AuthService,
+    RequestBuilder
+  ]
 })
 export class AuthModule {}
