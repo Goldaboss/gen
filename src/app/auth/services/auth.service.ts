@@ -1,14 +1,15 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpErrorResponse} from "@angular/common/http";
 import {catchError, Observable, tap, throwError} from "rxjs";
 import {User} from "../models/user.model";
 import {Router} from "@angular/router";
+import {RequestBuilder} from "../../data-access/services/request-builder";
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class AuthService {
 
   constructor(
-    private http: HttpClient,
+    private readonly request: RequestBuilder,
     private router: Router
   ) {
   }
@@ -26,7 +27,7 @@ export class AuthService {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify({username: user.name, password: user.password});
 
-    return this.http.post(`https://dummyjson.com/auth/login`, body, {'headers': headers})
+    return this.request.to(`auth/login`).withBody(body).withHeaders(headers).post()
       .pipe(
         tap(this.setToken),
         catchError(this.handleError.bind(this))
