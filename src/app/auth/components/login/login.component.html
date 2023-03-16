@@ -1,4 +1,4 @@
-<div class="container max-w-xl mx-auto">
+<div class="container max-w-xl mx-auto" *ngIf="!(loading$ | async); else loading">
   <form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-col" autocomplete="off">
 
     <mat-form-field appearance="outline">
@@ -21,4 +21,6 @@
 
 </div>
 
-<gen-loading-spinner *ngIf="loading$ | async"></gen-loading-spinner>
+<ng-template #loading>
+  <gen-loading-spinner></gen-loading-spinner>
+</ng-template>
