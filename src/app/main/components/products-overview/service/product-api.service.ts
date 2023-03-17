@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {RequestBuilder} from "../../../../data-access/services/request-builder";
 import {Observable} from "rxjs";
-import {ProductsResponseModel} from "../models/Product.model";
+import {ProductsResponseModel} from "../models/product.model";
 
 @Injectable()
 export class ProductApiService {
