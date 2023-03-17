@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpParameterCodec, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Params} from "@angular/router";
 
 
 interface HttpHeaders {
@@ -28,6 +29,24 @@ interface RequestOptions {
   params?: HttpParams;
 }
 
+export class CustomQueryEncoderHelper implements HttpParameterCodec {
+  encodeKey(k: string): string {
+    return encodeURIComponent(k);
+  }
+
+  encodeValue(v: string): string {
+    return encodeURIComponent(v);
+  }
+
+  decodeKey(k: string): string {
+    return decodeURIComponent(k);
+  }
+
+  decodeValue(v: string): string {
+    return decodeURIComponent(v);
+  }
+}
+
 class Builder {
   private options: RequestOptions = {};
 
@@ -46,13 +65,18 @@ class Builder {
     return this;
   }
 
-  private request(method: RequestMethods) {
-    return this.http.request(method, this.uri, this.options);
+  public withParams(params: Params) {
+    this.options = {
+      ...this.options,
+      params: this.toHttpParams(params),
+    }
+    return this;
   }
 
   public get<T>(): Observable<T> {
     return this.request(RequestMethods.Get)
   }
+
   public post<T>(): Observable<T> {
     return this.request(RequestMethods.Post)
   }
@@ -69,6 +93,16 @@ class Builder {
     return this.request(RequestMethods.Delete)
   }
 
+  private request(method: RequestMethods) {
+    return this.http.request(method, this.uri, this.options);
+  }
+
+  private toHttpParams(params: Params) {
+      return Object.getOwnPropertyNames(params).reduce(
+        (p, key) => p.set(key, params[key]),
+        new HttpParams({ encoder: new CustomQueryEncoderHelper() }),
+      );
+    }
 }
 
 @Injectable()
