@@ -1,14 +1,14 @@
 <p>products component</p>
 <div class="flex justify-center">
-  <div *ngIf="!(productsSv.loading$ | async); else loading">
+  <div *ngIf="!loading; else loadingBlock">
     <table>
       <thead>
       <tr>
-        <th class="bg-primary">Title</th>
-        <th class="bg-primary">Brand</th>
-        <th class="bg-primary">Price</th>
-        <th class="bg-primary">Discount Percentage</th>
-        <th class="bg-primary"></th>
+        <th>Title</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th>Discount Percentage</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
@@ -28,7 +28,7 @@
     </table>
   </div>
 
-  <ng-template #loading>
+  <ng-template #loadingBlock>
     <gen-loading-spinner></gen-loading-spinner>
   </ng-template>
 </div>

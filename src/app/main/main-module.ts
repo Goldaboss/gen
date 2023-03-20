@@ -6,10 +6,10 @@ import {MainOverviewComponent} from "./components/main-overview/main-overview.co
 import {UserOverviewComponent} from "./components/user-overview/user-overview.component";
 import {ProductsOverviewComponent} from "./components/products-overview/products-overview.component";
 import {AboutOverviewComponent} from "./components/about-overview/about-overview.component";
-import {ProductsService} from "./services/products.service";
 import {ProductsComponent} from "./components/products-overview/components/products/products.component";
 import {SharedModule} from "../shared/shared.module";
 import {AuthService} from "../auth/services/auth.service";
+import {ProductsStoreModule} from "./components/products-overview/lib/products-store.module";
 
 @NgModule({
   declarations: [
@@ -22,10 +22,10 @@ import {AuthService} from "../auth/services/auth.service";
   imports: [
     MainRoutingModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    ProductsStoreModule
   ],
   providers: [
-    ProductsService,
     AuthService
   ],
 })

@@ -18,3 +18,7 @@ export interface ProductModel {
   thumbnail: string,
   images: string[]
 }
+
+export interface ProductStateParamsModel {
+  limit: number
+}
