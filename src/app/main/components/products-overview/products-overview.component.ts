@@ -1,7 +1,10 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {ProductsService} from "../../services/products.service";
-import {BehaviorSubject} from "rxjs";
-import {ProductModel} from "../../models/product.model";
+import {Observable} from "rxjs";
+import {ProductModel} from "./models/product.model";
+import {Select, Store} from "@ngxs/store";
+import {ProductsState} from "./lib/state/products.state";
+import {GetProductsList} from "./lib/state/products.actions";
+
 
 @Component({
   selector: 'app-products-overview',
@@ -11,12 +14,12 @@ import {ProductModel} from "../../models/product.model";
 })
 export class ProductsOverviewComponent implements OnInit {
 
-  public list$: BehaviorSubject<ProductModel[]>  = this.productsService.productData$;
+  constructor(private readonly store: Store) {}
 
-  constructor(private productsService: ProductsService) {
-  }
+  @Select(ProductsState.products) productsData$: Observable<ProductModel[]>
+  @Select(ProductsState.loading) loading$: Observable<boolean>
 
   ngOnInit(): void {
-    this.productsService.getList();
+    this.store.dispatch(new GetProductsList())
   };
 }

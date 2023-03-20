@@ -39,23 +39,16 @@ export class ProductsState {
     return loading
   }
 
-
   @Action(GetProductsList)
-  public changeRequestParams(
-    {getState, patchState, setState}: StateContext<ProductsStateModel>,
-    action: GetProductsList,
+  public GetProductsList(
+    {patchState}: StateContext<ProductsStateModel>
   ) {
-    const state = getState();
 
     patchState({
       loading: true
     });
 
-    patchState({
-      params: {...(state.params)},
-    });
-
-    return this.productApi.getList(action.params.limit).pipe(
+    return this.productApi.getList().pipe(
       tap(({products}) => {
         patchState({
           products: products
@@ -63,6 +56,5 @@ export class ProductsState {
       }),
       finalize(() => patchState({loading: false}))
     )
-
   }
 }

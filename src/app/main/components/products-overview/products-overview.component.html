@@ -1,2 +1,5 @@
 <p>products-overview works!</p>
-<app-products [productsData]="list$ | async"></app-products>
+<app-products
+  [productsData]="productsData$ | async"
+  [loading]="loading$ | async"
+></app-products>
