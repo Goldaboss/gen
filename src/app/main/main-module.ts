@@ -10,7 +10,6 @@ import {ProductsComponent} from "./components/products-overview/components/produ
 import {SharedModule} from "../shared/shared.module";
 import {AuthService} from "../auth/services/auth.service";
 import {ProductsStoreModule} from "./components/products-overview/lib/products-store.module";
-import {ProductApiService} from "./components/products-overview/service/product-api.service";
 
 @NgModule({
   declarations: [
@@ -27,8 +26,7 @@ import {ProductApiService} from "./components/products-overview/service/product-
     ProductsStoreModule
   ],
   providers: [
-    AuthService,
-    ProductApiService
+    AuthService
   ],
 })
 export class MainModule {}

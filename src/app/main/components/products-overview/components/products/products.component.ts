@@ -1,6 +1,5 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {ProductModel} from "../../../../models/product.model";
-import {ProductsService} from "../../../../services/products.service";
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ProductModel} from "../../models/product.model"
 
 @Component({
   selector: 'app-products',
@@ -8,12 +7,8 @@ import {ProductsService} from "../../../../services/products.service";
   styleUrls: ['./products.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
 
   @Input() public productsData: ProductModel[] = [];
-
-  constructor(public productsSv: ProductsService) { }
-
-  ngOnInit(): void {
-  }
+  @Input() public loading: boolean;
 }
