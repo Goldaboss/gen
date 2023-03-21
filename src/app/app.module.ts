@@ -9,7 +9,8 @@ import {HeaderComponent} from './header/header.component';
 import {AuthInterceptor} from "./shared/auth.interceptor";
 import {AuthModule} from "./auth/auth.module";
 import {MainModule} from "./main/main-module";
-import {DataAccessModule} from "./data-access/data-access.module";
+import {DataAccessModule} from "./modules/data-access/data-access.module";
+import {NgxsModule} from "@ngxs/store";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
