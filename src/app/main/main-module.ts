@@ -8,6 +8,7 @@ import {ProductsOverviewComponent} from "./components/products-overview/products
 import {ProductsComponent} from "./components/products-overview/components/products/products.component";
 import {SharedModule} from "../shared/shared.module";
 import {AuthService} from "../auth/services/auth.service";
+import {ItemProductComponent} from "./components/products-overview/components/item-product/item-product.component";
 import {ProductsStoreModule} from "./components/products-overview/lib/products-store.module";
 
 @NgModule({
@@ -15,7 +16,8 @@ import {ProductsStoreModule} from "./components/products-overview/lib/products-s
     MainOverviewComponent,
     UserOverviewComponent,
     ProductsOverviewComponent,
-    ProductsComponent
+    ProductsComponent,
+    ItemProductComponent
   ],
   imports: [
     MainRoutingModule,
