@@ -3,7 +3,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {catchError, Observable, tap, throwError} from "rxjs";
 import {User} from "../models/user.model";
 import {Router} from "@angular/router";
-import {RequestBuilder} from "../../data-access/services/request-builder";
+import {RequestBuilder} from "../../modules/data-access/services/request-builder";
 
 @Injectable()
 export class AuthService {

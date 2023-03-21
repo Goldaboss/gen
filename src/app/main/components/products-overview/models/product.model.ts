@@ -19,6 +19,3 @@ export interface ProductModel {
   images: string[]
 }
 
-export interface ProductStateParamsModel {
-  limit: number
-}
