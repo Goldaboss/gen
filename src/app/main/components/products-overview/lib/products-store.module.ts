@@ -4,7 +4,7 @@ import {ProductApiService} from "../service/product-api.service";
 import {ProductsState} from "./state/products.state";
 
 @NgModule({
-  imports: [NgxsModule.forRoot([ProductsState])],
+  imports: [NgxsModule.forFeature([ProductsState])],
   providers: [ProductApiService]
 })
 export class ProductsStoreModule {

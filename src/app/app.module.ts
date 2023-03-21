@@ -28,7 +28,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     BrowserAnimationsModule,
     AuthModule,
     MainModule,
-    DataAccessModule
+    DataAccessModule,
+    NgxsModule.forRoot([]),
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]
