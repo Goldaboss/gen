@@ -18,7 +18,7 @@
 
     <ul class="flex justify-between">
       <li routerLinkActive="active">
-        <a [routerLink]="['/main', 'about']" class="text-xl font-medium text-white px-5 py-2">About</a>
+        <a [routerLink]="['/about']" class="text-xl font-medium text-white px-5 py-2">About</a>
       </li>
       <li routerLinkActive="active" *ngIf="authService.isAuthenticated()">
         <a [routerLink]="['/main', 'products']" class="text-xl font-medium text-white px-5 py-2">Products</a>
