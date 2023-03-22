@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {RequestBuilder} from "../../../../modules/data-access/services/request-builder";
+import {RequestBuilder} from "../../modules/data-access/services/request-builder";
 import {Observable} from "rxjs";
 import {ProductsResponseModel} from "../models/product.model";
 

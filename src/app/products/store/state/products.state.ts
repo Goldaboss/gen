@@ -19,7 +19,8 @@ export interface ProductStateParamsModel {
 const defaults: ProductsStateModel = {
   products: [],
   params: {
-    limit: 0
+    limit: 0,
+    id: null
   },
   loading: false
 }
@@ -46,8 +47,11 @@ export class ProductsState {
 
   @Action(GetProductsList)
   public GetProductsList(
-    {patchState}: StateContext<ProductsStateModel>
+    {patchState, getState}: StateContext<ProductsStateModel>,
+    action: GetProductsList
   ) {
+
+    const {params} = getState();
 
     patchState({
       loading: true
@@ -62,4 +66,16 @@ export class ProductsState {
       finalize(() => patchState({loading: false}))
     )
   }
+
+  // @Action(GetProductItem)
+  // public getProductItem(
+  //   {patchState, getState, dispatch} :StateContext<ProductsStateModel>,
+  //   action: GetProductItem) {
+  //   const { params } = getState();
+  //
+  //   patchState({
+  //     params: {...params, ...action}
+  //   });
+  //   return dispatch(new GetProductsList())
+  // }
 }

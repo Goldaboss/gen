@@ -1,5 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {ProductModel} from "../../models/product.model"
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'app-products',
@@ -9,6 +8,6 @@ import {ProductModel} from "../../models/product.model"
 })
 export class ProductsComponent {
 
-  @Input() public productsData: ProductModel[] = [];
-  @Input() public loading: boolean;
+  // @Input() public productsData: ProductModel[] = [];
+  // @Input() public loading: boolean;
 }
