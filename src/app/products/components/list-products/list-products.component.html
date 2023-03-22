@@ -1,6 +1,4 @@
-
-
-<div class="flex justify-center flex-wrap" *ngIf="!loading; else loadingBlock">
+<div class="flex justify-center flex-wrap" *ngIf="!loading; else loadingBlock" style="overflow-y: scroll">
   <app-item-product *ngFor="let item of productData" [productItem]="item" class="flex w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"></app-item-product>
 </div>
 
