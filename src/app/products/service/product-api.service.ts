@@ -9,7 +9,7 @@ export class ProductApiService {
   constructor(public request: RequestBuilder) {
   }
 
-  public getList(limit: number = 0): Observable<ProductsResponseModel> {
+  public getList(limit: number): Observable<ProductsResponseModel> {
     return this.fetch('products')
       .withParams({limit})
       .get<ProductsResponseModel>()

@@ -47,17 +47,17 @@ export class ProductsState {
 
   @Action(GetProductsList)
   public GetProductsList(
-    {patchState, getState}: StateContext<ProductsStateModel>,
-    action: GetProductsList
+    {patchState, getState}: StateContext<ProductsStateModel>
   ) {
 
     const {params} = getState();
 
     patchState({
+      params: {...params},
       loading: true
     });
 
-    return this.productApi.getList().pipe(
+    return this.productApi.getList(params.limit).pipe(
       tap(({products}) => {
         patchState({
           products: products
