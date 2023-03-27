@@ -7,6 +7,7 @@ import { ListProductsComponent } from './components/list-products/list-products.
 import { ItemProductComponent } from './components/item-product/item-product.component';
 import {SharedModule} from "../shared/shared.module";
 import {ProductsStoreModule} from "./store/products-store.module";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {ProductsStoreModule} from "./store/products-store.module";
     CommonModule,
     ProductsRoutingModule,
     SharedModule,
-    ProductsStoreModule
+    ProductsStoreModule,
+    MatIconModule
   ]
 })
 export class ProductsModule { }

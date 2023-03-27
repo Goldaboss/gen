@@ -1,13 +1,15 @@
-<a target="_blank" [routerLink]="['/main', 'product', productItem?.id]" class="flex flex-col p-3 hover:text-blue-400 ">
-  <div class="pb-3 flex justify-center h-48">
-    <img class="w-fit h-full" [src]="productItem.images[0]" alt="img">
+<a target="_blank" [routerLink]="['/main', 'product', productItem?.id]" class="flex w-full flex-col p-3 hover:text-blue-400">
+  <div class="pb-3 flex justify-center" style="height: 15vw">
+      <img [src]="productItem.images[0]" alt="img" class="object-contain">
   </div>
-  <div class="mb-3">
+
+  <div class="mb-3 flex justify-between items-center">
     <p
-      class="p-2 bg-blue-600 inline-block rounded font-medium text-white">{{productItem.price | currency: 'EUR':'symbol':undefined}}</p>
+      class="xl:text-xl lg:text-lg md:text-md sm:text-sm p-1  bg-blue-600 inline-block rounded font-medium text-white">{{productItem.price | currency: 'EUR':'symbol':undefined}}</p>
+   <div class="flex">
+     <mat-icon>star_border</mat-icon><span>{{productItem.rating}}</span>
+   </div>
   </div>
-  <h2 class="text-xl font-medium">{{productItem.title}}</h2>
-  <div>
-    <p class="text-xs">{{productItem.description}}</p>
-  </div>
+
+    <h2 class="xl:text-xl lg:text-lg md:text-md sm:text-sm font-medium">{{productItem.title}}</h2>
 </a>

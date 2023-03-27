@@ -37,7 +37,13 @@
   }
 }
 
-li.active a {
+.active a {
   cursor: default;
   border-bottom: 1px dashed white;
+}
+
+.btn_menu {
+  line-height: inherit;
+  width: auto;
+  height: auto;
 }

@@ -12,21 +12,21 @@
   </svg>
 
   <nav class="flex justify-between px-8 py-3 items-center w-full absolute">
-    <h1 class="text-xl font-medium text-white px-5 border-2 rounded-full">
-      <a [routerLink]="['/about']">Logo</a>
-    </h1>
+    <div class="px-5 border-2 rounded-full">
+      <a [routerLink]="['/about']" class="xl:text-xl text-white">Logo</a>
+    </div>
 
     <ul class="flex justify-between">
       <li routerLinkActive="active">
-        <a [routerLink]="['/about']" class="text-xl font-medium text-white px-5 py-2">About</a>
+        <a [routerLink]="['/about']" class="xl:text-xl lg:text-lg md:text-md sm:text-sm font-normal text-white px-5 py-2">About</a>
       </li>
       <li routerLinkActive="active" *ngIf="authService.isAuthenticated()">
-        <a [routerLink]="['/main', 'products']" class="text-xl font-medium text-white px-5 py-2">Products</a>
+        <a [routerLink]="['/main', 'products']" class="xl:text-xl lg:text-lg md:text-md sm:text-sm font-normal text-white px-5 py-2">Products</a>
       </li>
     </ul>
 
     <div class="hidden sm:flex">
-      <button mat-icon-button [matMenuTriggerFor]="menu">
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="btn_menu">
         <mat-icon class="text-white">more_vert</mat-icon>
       </button>
     </div>
@@ -34,32 +34,32 @@
     <mat-menu #menu="matMenu">
       <ul class="flex flex-col">
         <li routerLinkActive="active" *ngIf="authService.isAuthenticated()">
-          <a [routerLink]="['/main', 'user']" class="text-lg font-medium mx-2 px-5 py-2">User</a>
+          <a [routerLink]="['/main', 'user']" class="sm:text-sm mx-2 px-5 py-2">User</a>
         </li>
         <li routerLinkActive="active" *ngIf="!authService.isAuthenticated()">
-          <a [routerLink]="['/auth', 'login']" class="text-lg font-medium mx-2 px-5 py-2 ">Login</a>
+          <a [routerLink]="['/auth', 'login']" class="sm:text-sm font-normal mx-2 px-5 py-2 ">Login</a>
         </li>
         <li routerLinkActive="active" *ngIf="!authService.isAuthenticated()">
-          <a [routerLink]="['/auth', 'signup']" class="text-lg font-medium mx-2 px-5 py-2">Sign up</a>
+          <a [routerLink]="['/auth', 'signup']" class="sm:text-sm font-normal mx-2 px-5 py-2">Sign up</a>
         </li>
         <li *ngIf="authService.isAuthenticated()">
-          <a href="#" class="text-lg font-medium mx-2 px-5 py-2" (click)="logout($event)">Logout</a>
+          <a href="#" class="sm:text-sm font-medium mx-2 px-5 py-2" (click)="logout($event)">Logout</a>
         </li>
       </ul>
     </mat-menu>
 
     <ul class="justify-between hidden md:flex lg:flex xl:flex">
       <li routerLinkActive="active" *ngIf="authService.isAuthenticated()">
-        <a [routerLink]="['/main', 'user']" class="text-lg font-medium text-white px-5 py-2">User</a>
+        <a [routerLink]="['/main', 'user']" class="xl:text-xl lg:text-lg md:text-md font-normal text-white px-5 py-2">User</a>
       </li>
       <li routerLinkActive="active" *ngIf="!authService.isAuthenticated()">
-        <a [routerLink]="['/auth', 'login']" class="text-lg font-medium text-white mx-2 px-5 py-2 ">Login</a>
+        <a [routerLink]="['/auth', 'login']" class="xl:text-xl lg:text-lg md:text-md font-normal text-white mx-2 px-5 py-2 ">Login</a>
       </li>
       <li routerLinkActive="active" *ngIf="!authService.isAuthenticated()">
-        <a [routerLink]="['/auth', 'signup']" class="text-lg font-medium text-white mx-2 px-5 py-2">Sign up</a>
+        <a [routerLink]="['/auth', 'signup']" class="xl:text-xl lg:text-lg md:text-md font-normal text-white mx-2 px-5 py-2">Sign up</a>
       </li>
       <li *ngIf="authService.isAuthenticated()">
-        <a href="#" class="text-lg font-medium text-white mx-2 px-5 py-2" (click)="logout($event)">Logout</a>
+        <a href="#" class="xl:text-xl lg:text-lg md:text-md font-normal text-white mx-2 px-5 py-2" (click)="logout($event)">Logout</a>
       </li>
     </ul>
   </nav>
