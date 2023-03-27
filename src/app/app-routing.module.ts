@@ -6,7 +6,7 @@ import {AboutModule} from "./about/about.module";
 import {AuthGuard} from "./shared/auth.guard";
 
 const routes: Routes = [
-  {path: '', redirectTo: 'main', pathMatch: 'full'},
+  {path: '', redirectTo: 'about', pathMatch: 'full'},
   {path: 'auth', loadChildren: () => AuthModule},
   {path: 'about', loadChildren: () => AboutModule},
   {path: 'main', loadChildren: () => MainModule, canActivate: [AuthGuard]},

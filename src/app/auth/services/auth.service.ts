@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   logout() {
-    this.setToken(null)
+    this.setToken(null);
   }
 
   isAuthenticated(): boolean {

@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
         finalize(()=> this.loading$.next(false)))
       .subscribe({
       next: () => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/main', 'products']);
       },
       error: () => {
         this.form.enable()
