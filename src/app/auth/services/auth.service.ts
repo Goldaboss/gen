@@ -58,7 +58,7 @@ export class AuthService {
 
   private setToken(response: any | null) {
     if (response) {
-      const expDate = new Date(new Date().getTime() + 60 * 1000)
+      const expDate = new Date(new Date().getTime() + 600 * 1000)
       localStorage.setItem('token', response.token);
       localStorage.setItem('token-exp', expDate.toString());
     } else {
