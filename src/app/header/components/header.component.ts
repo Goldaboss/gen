@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {AuthService} from "../auth/services/auth.service";
+import {AuthService} from "../../auth/services/auth.service";
 import {Router} from "@angular/router";
 
 @Component({
