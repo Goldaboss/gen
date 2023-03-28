@@ -46,7 +46,7 @@ export class ProductsState {
   }
 
   @Action(GetProductsList)
-  public GetProductsList(
+  public getProductsList(
     {patchState, getState}: StateContext<ProductsStateModel>
   ) {
 

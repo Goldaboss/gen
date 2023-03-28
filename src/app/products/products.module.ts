@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { ProductsRoutingModule } from './products-routing.module';
-import { ProductsOverviewComponent } from './components/products-overview/products-overview.component';
-import { ListProductsComponent } from './components/list-products/list-products.component';
-import { ItemProductComponent } from './components/item-product/item-product.component';
+import {ProductsRoutingModule} from './products-routing.module';
+import {ProductsOverviewComponent} from './components/products-overview/products-overview.component';
+import {ListProductsComponent} from './components/list-products/list-products.component';
+import {ItemProductComponent} from './components/item-product/item-product.component';
 import {SharedModule} from "../shared/shared.module";
 import {ProductsStoreModule} from "./store/products-store.module";
 import {MatIconModule} from "@angular/material/icon";
@@ -24,4 +24,5 @@ import {MatIconModule} from "@angular/material/icon";
     MatIconModule
   ]
 })
-export class ProductsModule { }
+export class ProductsModule {
+}

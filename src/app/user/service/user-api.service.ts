@@ -1,18 +1,16 @@
 import {Injectable} from "@angular/core";
 import {RequestBuilder} from "../../modules/data-access/services/request-builder";
 import {Observable} from "rxjs";
-import {ProductsResponseModel} from "../models/product.model";
+import {UserModel} from "../models/user.model";
 
 @Injectable()
-export class ProductApiService {
-
+export class UserApiService {
   constructor(private request: RequestBuilder) {
   }
 
-  public getList(limit: number): Observable<ProductsResponseModel> {
-    return this.fetch('products')
-      .withParams({limit})
-      .get<ProductsResponseModel>()
+  public getUser(id: number): Observable<UserModel>{
+    return this.fetch(`users/${id}`)
+      .get<UserModel>()
   }
 
   private fetch(url: string) {

@@ -10,6 +10,7 @@ import {AuthInterceptor} from "./shared/auth.interceptor";
 import {HeaderModule} from "./header/header.module";
 import {AuthModule} from "./auth/auth.module";
 import {MainModule} from "./main/main-module";
+import {UserModule} from "./user/user.module";
 import {DataAccessModule} from "./modules/data-access/data-access.module";
 
 const INTERCEPTOR_PROVIDER: Provider = {
@@ -29,6 +30,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     HeaderModule,
     AuthModule,
     MainModule,
+    UserModule,
     DataAccessModule,
     NgxsModule.forRoot([])
   ],
