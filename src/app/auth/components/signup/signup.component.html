@@ -1,1 +1,58 @@
-<p class="flex justify-center">In progress</p>
+<div class="container max-w-xl mx-auto px-2.5" *ngIf="!(loading$ | async); else loading">
+  <form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-col" autocomplete="off">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your FirstName</mat-label>
+      <input matInput type="text" formControlName="firstName">
+      <mat-error *ngIf="form.controls['firstName'].errors?.['required']">FirstName is required (Muhammad)</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your LastName</mat-label>
+      <input matInput type="text" formControlName="lastName">
+      <mat-error *ngIf="form.controls['lastName'].errors?.['required']">LastName is required (Ovi)</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+    <mat-label >Gender</mat-label>
+      <input matInput class="invisible">
+      <mat-radio-group [(ngModel)]="genderType" formControlName="gender">
+        <mat-radio-button value="Male" class="mr-4" [color]="color">Male</mat-radio-button>
+        <mat-radio-button value="Female" class="mr-4">Female</mat-radio-button>
+      </mat-radio-group>
+  </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your email</mat-label>
+      <input matInput type="text" formControlName="email">
+      <mat-error *ngIf="form.controls['email'].errors?.['required']">Email is required </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your UserName</mat-label>
+      <input matInput type="text" formControlName="userName">
+      <mat-error *ngIf="form.controls['userName'].errors?.['required']">UserName is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+      <mat-icon (click)="hidePassword=!hidePassword"
+                matSuffix>{{ hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+      <mat-error *ngIf="form.controls['password'].errors?.['required']">Password is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input matInput  type="date" formControlName="birthDate">
+    </mat-form-field>
+
+    <div class="ml-auto">
+      <button mat-raised-button color="primary" class="px-5" type="submit" [disabled]="!form.valid">registration</button>
+    </div>
+  </form>
+</div>
+
+<ng-template #loading>
+  <gen-loading-spinner></gen-loading-spinner>
+</ng-template>

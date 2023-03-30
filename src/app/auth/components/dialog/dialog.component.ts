@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Inject, OnDestroy} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Router} from "@angular/router";
 
@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DialogComponent implements OnDestroy {
+export class DialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: string,
     public dialogRef: MatDialogRef<DialogComponent>,
@@ -16,7 +16,13 @@ export class DialogComponent implements OnDestroy {
   ) {
   }
 
-  ngOnDestroy(): void {
-    this.dialogRef.close(this.router.navigate(['/auth', 'login']));
+  ngOnInit(): void {
+    setTimeout(() => this.dialogRef.close(), 5000);
+
+    if (this.data === 'Регистрация прошла успешно' ) {
+      this.router.navigate(['/about'])
+    } else {
+      this.router.navigate(['/auth', 'login']);
+    }
   }
 }

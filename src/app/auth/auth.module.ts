@@ -3,7 +3,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {MatDialogModule} from "@angular/material/dialog";
 
@@ -14,6 +14,8 @@ import {LoginComponent} from './components/login/login.component';
 import {DialogComponent} from "./components/dialog/dialog.component";
 import {SharedModule} from "../shared/shared.module";
 import {AuthService} from "./services/auth.service";
+import {MatRadioModule} from "@angular/material/radio";
+import {RegService} from "./services/reg.service";
 
 @NgModule({
   declarations: [
@@ -31,10 +33,14 @@ import {AuthService} from "./services/auth.service";
     MatIconModule,
     ReactiveFormsModule,
     SharedModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRadioModule,
+    FormsModule,
   ],
   providers: [
     AuthService,
+    RegService
   ]
 })
-export class AuthModule {}
+export class AuthModule {
+}
