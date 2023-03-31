@@ -1,6 +1,8 @@
 import {Injectable} from "@angular/core";
 import {UserModel} from "../../user/models/user.model";
 import {RequestBuilder} from "../../modules/data-access/services/request-builder";
+import {HttpErrorResponse} from "@angular/common/http";
+import {catchError, throwError} from "rxjs";
 
 @Injectable()
 export class RegService {
@@ -20,7 +22,13 @@ export class RegService {
       birthDate: user.birthDate
     });
 
-    return this.request.to('users/add').withBody(body).withHeaders(headers).post()
+    return this.request.to('users/adds').withBody(body).withHeaders(headers).post()
+      .pipe(
+        catchError(this.handleError.bind(this))
+      )
+  }
 
+  private handleError(error: HttpErrorResponse) {
+    return throwError(error);
   }
 }
