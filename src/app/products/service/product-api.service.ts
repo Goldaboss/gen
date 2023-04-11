@@ -9,9 +9,9 @@ export class ProductApiService {
   constructor(private request: RequestBuilder) {
   }
 
-  public getList(limit: number): Observable<ProductsResponseModel> {
-    return this.fetch('products')
-      .withParams({limit})
+  public getList(limit: number, search?: string): Observable<ProductsResponseModel> {
+    return this.fetch(`products/search`)
+      .withParams({limit, q: search})
       .get<ProductsResponseModel>()
   }
 

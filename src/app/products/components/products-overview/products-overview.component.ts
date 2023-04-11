@@ -13,12 +13,17 @@ import {GetProductsList} from "../../store/state/products.actions";
 })
 export class ProductsOverviewComponent implements OnInit {
 
-  constructor(private readonly store: Store) { }
-
   @Select(ProductsState.products) productsData$: Observable<ProductModel[]>;
   @Select(ProductsState.loading) loading$: Observable<boolean>
 
+  constructor(private readonly store: Store) {
+  }
+
   ngOnInit(): void {
-    this.store.dispatch(new GetProductsList())
+    this.store.dispatch(new GetProductsList(''));
+  }
+
+  search(search: string) {
+    this.store.dispatch(new GetProductsList(search))
   }
 }

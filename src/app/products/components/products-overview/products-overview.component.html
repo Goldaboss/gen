@@ -1,4 +1,7 @@
 <p>NEW products-overview works!</p>
+
+<app-filter (searchValue)="search($event)"></app-filter>
+
 <app-list-products
   [productData]="productsData$ | async"
   [loading]="loading$ | async"

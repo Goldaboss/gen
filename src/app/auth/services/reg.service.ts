@@ -22,7 +22,7 @@ export class RegService {
       birthDate: user.birthDate
     });
 
-    return this.request.to('users/adds').withBody(body).withHeaders(headers).post()
+    return this.request.to('users/add').withBody(body).withHeaders(headers).post()
       .pipe(
         catchError(this.handleError.bind(this))
       )

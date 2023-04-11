@@ -13,14 +13,16 @@ export interface ProductsStateModel {
 
 export interface ProductStateParamsModel {
   limit: number,
-  id: number | null
+  id: number | null,
+  search: string,
 }
 
 const defaults: ProductsStateModel = {
   products: [],
   params: {
     limit: 0,
-    id: null
+    id: null,
+    search: ''
   },
   loading: false
 }
@@ -47,35 +49,24 @@ export class ProductsState {
 
   @Action(GetProductsList)
   public getProductsList(
-    {patchState, getState}: StateContext<ProductsStateModel>
+    {patchState, getState}: StateContext<ProductsStateModel>,
+    action: GetProductsList
   ) {
 
     const {params} = getState();
 
     patchState({
-      params: {...params},
+      params: {...params, search: action.search},
       loading: true
     });
 
-    return this.productApi.getList(params.limit).pipe(
+    return this.productApi.getList(params.limit, action.search).pipe(
       tap(({products}) => {
         patchState({
-          products: products
+          products
         })
       }),
       finalize(() => patchState({loading: false}))
     )
   }
-
-  // @Action(GetProductItem)
-  // public getProductItem(
-  //   {patchState, getState, dispatch} :StateContext<ProductsStateModel>,
-  //   action: GetProductItem) {
-  //   const { params } = getState();
-  //
-  //   patchState({
-  //     params: {...params, ...action}
-  //   });
-  //   return dispatch(new GetProductsList())
-  // }
 }
