@@ -1,3 +1,7 @@
+<h2 class="text-center py-5">
+  Adding a new user will not add it into the server.
+  It will simulate a POST request and will return the new created user with a new id
+</h2>
 <div class="container max-w-xl mx-auto px-2.5" *ngIf="!(loading$ | async); else loading">
   <form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-col" autocomplete="off">
 
