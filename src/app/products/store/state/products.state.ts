@@ -13,7 +13,6 @@ export interface ProductsStateModel {
 
 export interface ProductStateParamsModel {
   limit: number,
-  id: number | null,
   search: string,
 }
 
@@ -21,7 +20,6 @@ const defaults: ProductsStateModel = {
   products: [],
   params: {
     limit: 0,
-    id: null,
     search: ''
   },
   loading: false
