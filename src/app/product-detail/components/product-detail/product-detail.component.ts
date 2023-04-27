@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ProductModel} from "../../../products/models/product.model";
 
 @Component({
   selector: 'app-product-detail',
@@ -7,4 +8,6 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductDetailComponent {
+
+  @Input() public product: ProductModel
 }

@@ -3,7 +3,10 @@ import {CommonModule} from '@angular/common';
 
 import {ProductDetailRoutingModule} from './product-detail-routing.module';
 import {ProductOverviewComponent} from './components/product-overview/product-overview.component';
-import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import {ProductDetailComponent} from './components/product-detail/product-detail.component';
+import {SharedModule} from "../shared/shared.module";
+import {ProductDetailApiService} from "./service/product-detail-api.service";
+import {MatCardModule} from "@angular/material/card";
 
 
 @NgModule({
@@ -13,7 +16,12 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
   ],
   imports: [
     CommonModule,
-    ProductDetailRoutingModule
+    ProductDetailRoutingModule,
+    SharedModule,
+    MatCardModule
+  ],
+  providers: [
+    ProductDetailApiService
   ]
 })
 export class ProductDetailModule {

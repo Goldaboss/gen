@@ -1,5 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {ProductDetailApiService} from "../../service/product-detail-api.service";
+import {BehaviorSubject} from "rxjs";
+import {ProductModel} from "../../../products/models/product.model";
 
 @Component({
   selector: 'app-product-overview',
@@ -9,10 +12,18 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ProductOverviewComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  public product$ = new BehaviorSubject<ProductModel>(null)
+
+  constructor(
+    private route: ActivatedRoute,
+    private prod: ProductDetailApiService
+    ) {
+  }
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.params['id'])
+    this.prod.getProductDetail(this.route.snapshot.params['id']).subscribe((prod) => {
+      this.product$.next(prod)
+    })
   }
 
 }
