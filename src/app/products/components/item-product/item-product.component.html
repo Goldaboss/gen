@@ -1,15 +1,26 @@
-<a [routerLink]="['/main', 'product', productItem?.id]" class="flex w-full flex-col p-3 hover:text-blue-400">
+<a
+  [routerLink]="['/main', 'product', productItem?.id]"
+  class="flex w-full flex-col p-3 hover:text-blue-400"
+>
   <div class="pb-3 flex justify-center h-full">
-      <img [src]="productItem.images[0]" alt="img" class="object-cover">
+    <img [src]="productItem.images[0]" alt="img" class="object-cover" />
   </div>
 
   <div class="mb-3 flex justify-between items-center">
     <p
-      class="xl:text-xl lg:text-lg md:text-md sm:text-sm p-1  bg-blue-600 inline-block rounded font-medium text-white">{{productItem.price | currency: 'EUR':'symbol':undefined}}</p>
-   <div class="flex">
-     <mat-icon>star_border</mat-icon><span class="xl:text-xl lg:text-lg md:text-md sm:text-sm">{{productItem.rating}}</span>
-   </div>
+      class="xl:text-xl lg:text-lg md:text-md sm:text-sm p-1 bg-blue-600 inline-block rounded font-medium text-white"
+    >
+      {{ productItem.price | currency : 'EUR' : 'symbol' : undefined }}
+    </p>
+    <div class="flex">
+      <mat-icon>star_border</mat-icon
+      ><span class="xl:text-xl lg:text-lg md:text-md sm:text-sm">{{
+        productItem.rating
+      }}</span>
+    </div>
   </div>
 
-    <h2 class="xl:text-xl lg:text-lg md:text-md sm:text-sm font-medium">{{productItem.title}}</h2>
+  <h2 class="xl:text-xl lg:text-lg md:text-md sm:text-sm font-medium">
+    {{ productItem.title }}
+  </h2>
 </a>

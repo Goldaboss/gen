@@ -1,28 +1,26 @@
-import {NgModule, Provider} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {NgxsModule} from "@ngxs/store";
+import { NgModule, Provider } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxsModule } from '@ngxs/store';
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {AuthInterceptor} from "./auth.interceptor";
-import {HeaderModule} from "./modules/header/header.module";
-import {AuthModule} from "./auth/auth.module";
-import {MainModule} from "./main/main-module";
-import {UserModule} from "./user/user.module";
-import {DataAccessModule} from "./modules/data-access/data-access.module";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AuthInterceptor } from './auth.interceptor';
+import { HeaderModule } from './modules/header/header.module';
+import { AuthModule } from './auth/auth.module';
+import { MainModule } from './main/main-module';
+import { UserModule } from './user/user.module';
+import { DataAccessModule } from './modules/data-access/data-access.module';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   multi: true,
-  useClass: AuthInterceptor
-}
+  useClass: AuthInterceptor,
+};
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,10 +30,9 @@ const INTERCEPTOR_PROVIDER: Provider = {
     MainModule,
     UserModule,
     DataAccessModule,
-    NgxsModule.forRoot([])
+    NgxsModule.forRoot([]),
   ],
   providers: [INTERCEPTOR_PROVIDER],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

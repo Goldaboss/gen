@@ -1,24 +1,36 @@
 <section *ngIf="product; else loadingBlock">
   <mat-card class="p-5">
-    <mat-card-title class="text-blue-600">{{product.title}}</mat-card-title>
-    <mat-card-subtitle class="">{{product.category}} >> {{product.brand}}</mat-card-subtitle>
+    <mat-card-title class="text-blue-600">{{ product.title }}</mat-card-title>
+    <mat-card-subtitle class=""
+      >{{ product.category }} >> {{ product.brand }}</mat-card-subtitle
+    >
     <div class="flex justify-center flex-wrap">
-      <div *ngFor="let img of product.images" class="p-2.5 flex justify-start w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
-        <img [src]="img" alt="img" class="w-full h-full ">
+      <div
+        *ngFor="let img of product.images"
+        class="p-2.5 flex justify-start w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
+      >
+        <img [src]="img" alt="img" class="w-full h-full" />
       </div>
     </div>
 
-    <p class="p-5 xl:text-xl lg:text-lg md:text-md sm:text-sm">{{product.description}}</p>
+    <p class="p-5 xl:text-xl lg:text-lg md:text-md sm:text-sm">
+      {{ product.description }}
+    </p>
 
     <div class="flex p-2.5">
-      <p class="font-bold p-2.5 xl:text-xl lg:text-lg md:text-md sm:text-sm">Price: {{product.price | currency}}</p>
-      <p class="text-red-600 p-2.5 xl:text-xl lg:text-lg md:text-md sm:text-sm">Discount: {{product.discountPercentage}}%</p>
+      <p class="font-bold p-2.5 xl:text-xl lg:text-lg md:text-md sm:text-sm">
+        Price: {{ product.price | currency }}
+      </p>
+      <p class="text-red-600 p-2.5 xl:text-xl lg:text-lg md:text-md sm:text-sm">
+        Discount: {{ product.discountPercentage }}%
+      </p>
     </div>
     <mat-card-actions>
       <button
         class="xl:text-xl lg:text-lg md:text-md sm:text-sm bg-blue-600 inline-block rounded font-medium text-white py-1 px-2"
         [routerLink]="['/main', 'products']"
-      >Back
+      >
+        Back
       </button>
     </mat-card-actions>
   </mat-card>

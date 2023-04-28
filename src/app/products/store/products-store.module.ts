@@ -1,11 +1,10 @@
-import {NgModule} from "@angular/core";
-import {NgxsModule} from "@ngxs/store";
-import {ProductApiService} from "../service/product-api.service";
-import {ProductsState} from "./state/products.state";
+import { NgModule } from '@angular/core';
+import { NgxsModule } from '@ngxs/store';
+import { ProductApiService } from '../service/product-api.service';
+import { ProductsState } from './state/products.state';
 
 @NgModule({
   imports: [NgxsModule.forFeature([ProductsState])],
-  providers: [ProductApiService]
+  providers: [ProductApiService],
 })
-export class ProductsStoreModule {
-}
+export class ProductsStoreModule {}

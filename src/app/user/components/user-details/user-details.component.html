@@ -1,26 +1,16 @@
 <mat-card class="w-1/4" *ngIf="!loading; else loadingBlock">
   <mat-card-header>
     <div mat-card-avatar></div>
-    <mat-card-title>{{'Credentials'}}</mat-card-title>
-    <mat-card-subtitle>{{'avatar'}}</mat-card-subtitle>
+    <mat-card-title>{{ 'Credentials' }}</mat-card-title>
+    <mat-card-subtitle>{{ 'avatar' }}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image [src]="userData.image" alt="img">
+  <img mat-card-image [src]="userData.image" alt="img" />
   <mat-card-content>
-    <p>
-      FirstName: {{userData.firstName}}
-    </p>
-    <p>
-      LastName: {{userData.lastName}}
-    </p>
-    <p>
-      Age: {{userData.age}}
-    </p>
-    <p>
-      Email: {{userData.email}}
-    </p>
-    <p>
-      Phone: {{userData.phone}}
-    </p>
+    <p>FirstName: {{ userData.firstName }}</p>
+    <p>LastName: {{ userData.lastName }}</p>
+    <p>Age: {{ userData.age }}</p>
+    <p>Email: {{ userData.email }}</p>
+    <p>Phone: {{ userData.phone }}</p>
   </mat-card-content>
 </mat-card>
 
