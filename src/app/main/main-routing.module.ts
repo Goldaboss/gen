@@ -5,10 +5,11 @@ import {MainOverviewComponent} from "./components/main-overview/main-overview.co
 import {ProductsModule} from "../products/products.module";
 import {UserModule} from "../user/user.module";
 import {ProductDetailModule} from "../product-detail/product-detail.module";
+import {AuthGuard} from "./services/auth.guard";
 
 const routes: Routes = [
   {
-    path: '', component: MainOverviewComponent, children: [
+    path: '', component: MainOverviewComponent, canActivateChild: [AuthGuard], children: [
       {path: '', redirectTo: 'products', pathMatch: 'full'},
       {path: 'products', loadChildren: () => ProductsModule},
       {path: 'user', loadChildren: () => UserModule},

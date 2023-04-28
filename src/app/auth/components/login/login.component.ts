@@ -1,12 +1,12 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
-import {BehaviorSubject,  finalize} from "rxjs";
+import {BehaviorSubject, finalize} from "rxjs";
 
 import {User} from "../../models/user.model";
 import {AuthService} from "../../services/auth.service";
-import {DialogComponent} from "../dialog/dialog.component";
+import {NotificationDialogComponent} from "../../../modules/shared/components/dialog/notification-dialog.component";
 
 @Component({
   selector: 'app-login',
@@ -23,22 +23,11 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private auth: AuthService,
-    private dialog: MatDialog,
-    private route: ActivatedRoute
+    private dialog: MatDialog
   ) {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params: Params) => {
-      if (params['authFailed']) {
-        this.dialog.open(DialogComponent, {data: 'Требуется авторизация'})
-      } else if (params['loginAgain']) {
-        this.dialog.open(DialogComponent, {data: 'Сессия истекла, требуется авторизация'})
-      } else if (params['userError']) {
-        this.dialog.open(DialogComponent, {data: 'Неправильное имя пользователя или пароль'})
-      }
-    })
-
 
     this.form = this.fb.group({
       name: ['kminchelle', [Validators.required]],
@@ -61,14 +50,15 @@ export class LoginComponent implements OnInit {
 
     this.auth.login(user)
       .pipe(
-        finalize(()=> this.loading$.next(false)))
+        finalize(() => this.loading$.next(false)))
       .subscribe({
-      next: () => {
-        this.router.navigate(['/main', 'products']);
-      },
-      error: () => {
-        this.form.enable()
-      }
-    })
+        next: () => {
+          this.router.navigate(['/main', 'products']);
+        },
+        error: () => {
+          this.dialog.open(NotificationDialogComponent, {data: 'Wrong username or password'});
+          this.form.enable()
+        }
+      })
   }
 }

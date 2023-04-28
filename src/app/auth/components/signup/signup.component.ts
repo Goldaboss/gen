@@ -5,7 +5,8 @@ import {UserModel} from "../../../user/models/user.model";
 import {RegService} from "../../services/reg.service";
 import {BehaviorSubject, finalize} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
-import {DialogComponent} from "../dialog/dialog.component";
+import {NotificationDialogComponent} from "../../../modules/shared/components/dialog/notification-dialog.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup',
@@ -24,7 +25,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private reg: RegService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {
   }
 
@@ -64,7 +66,8 @@ export class SignupComponent implements OnInit {
         finalize(() => this.loading$.next(false)))
       .subscribe({
         next: () => {
-          this.dialog.open(DialogComponent, {data: 'Регистрация прошла успешно'})
+          this.router.navigate(['/about']);
+          this.dialog.open(NotificationDialogComponent, {data: 'Registration completed'})
         },
         error: () => {
           this.form.enable()

@@ -6,7 +6,7 @@ import {UserRoutingModule} from './user-routing.module';
 import {UserOverviewComponent} from './components/user-overview/user-overview.component';
 import {UserDetailsComponent} from './components/user-details/user-details.component';
 import {UserStoreModule} from "./store/user-store.module";
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from "../modules/shared/shared.module";
 
 
 @NgModule({

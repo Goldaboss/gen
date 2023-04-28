@@ -5,14 +5,12 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
-import {MatDialogModule} from "@angular/material/dialog";
 
 import {AuthOverviewComponent} from "./components/auth-overview/auth-overview.component";
 import {AuthRoutingModule} from "./auth-routing.module";
 import {SignupComponent} from './components/signup/signup.component';
 import {LoginComponent} from './components/login/login.component';
-import {DialogComponent} from "./components/dialog/dialog.component";
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from "../modules/shared/shared.module";
 import {AuthService} from "./services/auth.service";
 import {MatRadioModule} from "@angular/material/radio";
 import {RegService} from "./services/reg.service";
@@ -21,8 +19,7 @@ import {RegService} from "./services/reg.service";
   declarations: [
     AuthOverviewComponent,
     SignupComponent,
-    LoginComponent,
-    DialogComponent
+    LoginComponent
   ],
   imports: [
     AuthRoutingModule,
@@ -33,7 +30,6 @@ import {RegService} from "./services/reg.service";
     MatIconModule,
     ReactiveFormsModule,
     SharedModule,
-    MatDialogModule,
     MatRadioModule,
     FormsModule,
   ],

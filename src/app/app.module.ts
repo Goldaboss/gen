@@ -6,8 +6,8 @@ import {NgxsModule} from "@ngxs/store";
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {AuthInterceptor} from "./shared/auth.interceptor";
-import {HeaderModule} from "./header/header.module";
+import {AuthInterceptor} from "./auth.interceptor";
+import {HeaderModule} from "./modules/header/header.module";
 import {AuthModule} from "./auth/auth.module";
 import {MainModule} from "./main/main-module";
 import {UserModule} from "./user/user.module";
