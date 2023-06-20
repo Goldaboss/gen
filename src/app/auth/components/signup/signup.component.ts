@@ -1,9 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { UserModel } from '../../../user/models/user.model';
 import { RegService } from '../../services/reg.service';
-import { BehaviorSubject, finalize } from 'rxjs';
+import { BehaviorSubject, finalize, Subject, takeUntil } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationDialogComponent } from '../../../modules/shared/components/dialog/notification-dialog.component';
 import { Router } from '@angular/router';
@@ -14,7 +19,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
   public color: ThemePalette = 'primary';
 
   public form: FormGroup = new FormGroup({});
@@ -23,6 +28,8 @@ export class SignupComponent implements OnInit {
   public loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false,
   );
+
+  private destroyed$ = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
@@ -69,7 +76,10 @@ export class SignupComponent implements OnInit {
 
     this.reg
       .singup(newUser)
-      .pipe(finalize(() => this.loading$.next(false)))
+      .pipe(
+        takeUntil(this.destroyed$),
+        finalize(() => this.loading$.next(false)),
+      )
       .subscribe({
         next: () => {
           this.router.navigate(['/about']);
@@ -81,5 +91,9 @@ export class SignupComponent implements OnInit {
           this.form.enable();
         },
       });
+  }
+  ngOnDestroy() {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 }

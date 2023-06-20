@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject, finalize } from 'rxjs';
+import { BehaviorSubject, finalize, Subject, takeUntil } from 'rxjs';
 
 import { User } from '../../models/user.model';
 import { AuthService } from '../../services/auth.service';
@@ -14,12 +19,13 @@ import { NotificationDialogComponent } from '../../../modules/shared/components/
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   public form: FormGroup = new FormGroup({});
   public hidePassword = true;
   public loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false,
   );
+  private destroyed$ = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
@@ -50,7 +56,10 @@ export class LoginComponent implements OnInit {
 
     this.auth
       .login(user)
-      .pipe(finalize(() => this.loading$.next(false)))
+      .pipe(
+        takeUntil(this.destroyed$),
+        finalize(() => this.loading$.next(false)),
+      )
       .subscribe({
         next: () => {
           this.router.navigate(['/main', 'products']);
@@ -62,5 +71,10 @@ export class LoginComponent implements OnInit {
           this.form.enable();
         },
       });
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 }

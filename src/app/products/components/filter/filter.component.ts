@@ -2,6 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  OnDestroy,
+  OnInit,
   Output,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -13,7 +15,7 @@ import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
   styleUrls: ['./filter.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FilterComponent {
+export class FilterComponent implements OnInit, OnDestroy {
   public formControl = new FormControl();
   private destroyed$ = new Subject<void>();
   @Output() searchValue = new EventEmitter<string>();
@@ -28,5 +30,10 @@ export class FilterComponent {
       .subscribe((value) => {
         this.searchValue.emit(value);
       });
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 }
