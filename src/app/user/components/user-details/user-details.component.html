@@ -1,10 +1,20 @@
-<mat-card class="w-1/4" *ngIf="!loading; else loadingBlock">
+<mat-card
+  class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4"
+  *ngIf="!loading; else loadingBlock"
+>
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>{{ 'Credentials' }}</mat-card-title>
     <mat-card-subtitle>{{ 'avatar' }}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image [src]="userData.image" alt="img" />
+  <div class="h-64">
+    <img
+      mat-card-image
+      [src]="userData.image"
+      alt="img"
+      class="object-contain"
+    />
+  </div>
   <mat-card-content>
     <p>FirstName: {{ userData.firstName }}</p>
     <p>LastName: {{ userData.lastName }}</p>
