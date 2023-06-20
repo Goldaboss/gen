@@ -12,12 +12,15 @@ import { AuthModule } from './auth/auth.module';
 import { MainModule } from './main/main-module';
 import { UserModule } from './user/user.module';
 import { DataAccessModule } from './modules/data-access/data-access.module';
+import { MetrikaModule } from 'ng-yandex-metrika';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   multi: true,
   useClass: AuthInterceptor,
 };
+
+let defaultCounter;
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +34,12 @@ const INTERCEPTOR_PROVIDER: Provider = {
     UserModule,
     DataAccessModule,
     NgxsModule.forRoot([]),
+    MetrikaModule.forRoot(
+      { id: 93676774, webvisor: true }, // CounterConfig | CounterConfig[]
+      // Необязательный параметр по умолчанию первый попавшийся,
+      // Можно задать ид счетчика, либо порядковый номер в массиве.
+      defaultCounter, // number | string
+    ),
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent],
